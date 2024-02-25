@@ -4,6 +4,8 @@ permalink: "/about/"
 layout: page
 ---
 
+![raccoon](/assets/logo/logo.png)
+
 # Scope of the website
 Share insights with others who are encountering the same issue as I am.
 
