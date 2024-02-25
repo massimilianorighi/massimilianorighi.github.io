@@ -1,11 +1,9 @@
 ---
 title:  "Setup SWAG with Azure DNS"
-mathjax: true
+# mathjax: true
 layout: post
 # categories: media
 ---
-
-{% include toc.html html=content %}
 
 ## SWAG
 sadasd
