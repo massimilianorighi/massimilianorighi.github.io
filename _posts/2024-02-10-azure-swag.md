@@ -92,7 +92,7 @@ From `DNS Zone` page, we need:
 - Subscription ID: e.g. `beb6bvvd-d251-45be-a1db-f26b87da91e`
 - DNS Zone name: e.g. `reverseproxynet.xyz`
 
-<iframe src="/assets/images/images_2024-02-10-azure-swag/subscriptionid.png" width="200"></iframe>
+![](/assets/images/images_2024-02-10-azure-swag/subscriptionid.png)
 
 #### dns_azure_tenant_id
 On Azure portal search for `Microsoft Entra ID`, then you should see a page like the one below that contains basic information about your tenant.
