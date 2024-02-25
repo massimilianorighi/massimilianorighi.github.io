@@ -27,7 +27,8 @@ Create a reverse proxy using [SWAG](https://hub.docker.com/r/linuxserver/swag) t
    - **Resource group location**: automatically select, or select region closest to you (check [this](https://infrastructuremap.microsoft.com/explore) or [this](https://build5nines.com/map-azure-regions/)).
 6. Click `Review + create`
 7. When DNS zone resource is created navigate to it. On the **Overview** page you will see list of name savers (1 to 4), that need to be copy/pasted to the your’s domain registrar (e.g: [namecheap](https://www.namecheap.com/)).
-![](/_posts/images_2024-02-10-azure-swag/dns_zone_example.png)
+![](/images_2024-02-10-azure-swag/dns_zone_example.png)
+
 
 ### Create Domain Registar
 1. Go to Namecheap and select: `Domain List-> Domain`.
@@ -92,6 +93,10 @@ From `DNS Zone` page, we need:
 - DNS Zone name: e.g. `reverseproxynet.xyz`
 
 ![](/_posts/images_2024-02-10-azure-swag/subscriptionid.png =200x)
+
+#### dns_azure_tenant_id
+On Azure portal search for `Microsoft Entra ID`, then you should see a page like the one below that contains basic information about your tenant.
+- Tenant ID: `d8x72dd3-f729-4fe1-0f6e-12dcb6c82d5c`
 
 
 ## SWAG setup
