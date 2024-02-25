@@ -27,13 +27,13 @@ Create a reverse proxy using [SWAG](https://hub.docker.com/r/linuxserver/swag) t
    - **Resource group location**: automatically select, or select region closest to you (check [this](https://infrastructuremap.microsoft.com/explore) or [this](https://build5nines.com/map-azure-regions/)).
 6. Click `Review + create`
 7. When DNS zone resource is created navigate to it. On the **Overview** page you will see list of name savers (1 to 4), that need to be copy/pasted to the your’s domain registrar (e.g: [namecheap](https://www.namecheap.com/)).
-![](/images_2024-02-10-azure-swag/dns_zone_example.png)
+![](/assets/images/images_2024-02-10-azure-swag/dns_zone_example.png)
 
 
 ### Create Domain Registar
 1. Go to Namecheap and select: `Domain List-> Domain`.
 2. In `NAMESERVERS` section, select the `Custom DNS` option from the dropdown menu. Now copy all four name servers from the Azure DNS zone resource created on previous section.
-![](/_posts/images_2024-02-10-azure-swag/namecheap.png)
+![](/assets/images/images_2024-02-10-azure-swag/namecheap.png)
 3. Wait few minutes for nameserver to propagate.
 4. You can check if name servers were applied, by calling command below:
 ```bash
@@ -71,7 +71,7 @@ It is now possible control your domain via Azure portal, automate scripts and/or
    - Select **Type**:: `A - Alias record`.
    - Enter **IP address**: **-> your VM Public IP address <-**.
 
-![](/_posts/images_2024-02-10-azure-swag/a_record.png)
+![](/assets/images/images_2024-02-10-azure-swag/a_record.png)
 
 ### Configure DNS-01 challenge
 SWAG support http or DNS validation. The DNS challenge is a bit more tricky than HTTP, because it requires access to your DNS provider via API. SWAG needs to access the DNS provider via API, in order to create a DNS TXT record, and then Let’s Encrypt can use it to validate the subdomain ownership.
@@ -92,7 +92,7 @@ From `DNS Zone` page, we need:
 - Subscription ID: e.g. `beb6bvvd-d251-45be-a1db-f26b87da91e`
 - DNS Zone name: e.g. `reverseproxynet.xyz`
 
-![](/_posts/images_2024-02-10-azure-swag/subscriptionid.png =200x)
+![](/assets/images/images_2024-02-10-azure-swag/subscriptionid.png =200x)
 
 #### dns_azure_tenant_id
 On Azure portal search for `Microsoft Entra ID`, then you should see a page like the one below that contains basic information about your tenant.
