@@ -98,6 +98,39 @@ From `DNS Zone` page, we need:
 On Azure portal search for `Microsoft Entra ID`, then you should see a page like the one below that contains basic information about your tenant.
 - Tenant ID: `d8x72dd3-f729-4fe1-0f6e-12dcb6c82d5c`
 
+![](/assets/images/images_2024-02-10-azure-swag/tenantid.png)
+
+#### dns_azure_sp_client_id and dns_azure_sp_client_secret
+We need to create an Azure App to have these two information.
+Steps:
+1. Go to `Microsoft Entra ID`
+2. On the left panel, select `App Registrations`
+3. Click `New Registration` button.
+   - Enter Name
+   - Select the longest expiration as possible (**if it stops working all services will be blocked! Keep note of the date, and remember to update it!**)
+4. Click `Register` button.
+![](/assets/images/images_2024-02-10-azure-swag/register_an_app.png)
+5. On the Overview tab of just created app, copy the `Application (client) ID`.
+   - dns_azure_sp_client_id = e.g. `689264e4-5e48-172f-a584-dd4124c57c29`
+6. Go to the `Certificates & secrets` tab on the left
+   - Click New client secret to generate a secret key.
+   - Copy new secret `Value` to `dns_azure_sp_client_secret`:
+   - dns_azure_sp_client_secret: e.g.`EnG9Q~5tG2Z-_Fi0nZOabmkvaAMxcgBX_YPcOaAo`
+
+#### Assign permission
+One more thing is left, we need to assign permissions to just created app.
+- Go to your subscription `Overview` page.
+- Select `Access Control (IAM)` tab.
+- Click `+Add` button.
+  - Select `Add role assignment` option.
+  - In the search box, type `dns`.
+  - Select `DNS Zone Contributor` role.
+- Click `Next` button.
+  - Click `+ Select members` button.
+  - In the search box type app name you created above and select it (in this example is: `reverseproxynet.xyz`).
+![](/assets/images/images_2024-02-10-azure-swag/dns_contributor_app.png)
+  - Click `Review + Assign` button.
+![](/assets/images/images_2024-02-10-azure-swag/app_role_assigned.png)
 
 ## SWAG setup
 
