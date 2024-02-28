@@ -193,3 +193,6 @@ dns_azure_zone1 = reverseproxynet.xyz:/subscriptions/beb6bvvd-d251-45be-a1db-f26
 3. Restart the docker container: `docker restart swag`.
 4. If everything is setup correctly and all the above steps has been correctly performed, by reaching the domain with the browser: `https://<YOUR-DOMAIN>` you should visualize the SWAG landing page.
 ![](/assets/images/images_2024-02-10-azure-swag/swag_landing_page.png)
+
+Final NOTE: If you want to change the aspect of the SWAG landing page (with 404 page or something else), just change the HTML page inside the swag_data volue: `./config/www/index.html`.
+Info and example [here](https://libertus.dev/posts/configure-traefik-to-use-custom-domain/part2/).
