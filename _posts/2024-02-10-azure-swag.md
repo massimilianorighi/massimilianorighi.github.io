@@ -132,18 +132,64 @@ One more thing is left, we need to assign permissions to just created app.
   - Click `Review + Assign` button.
 ![](/assets/images/images_2024-02-10-azure-swag/app_role_assigned.png)
 
-## SWAG setup
+## SWAG Configuration
 
-Embed code by putting `{{ "{% highlight language " }}%}` `{{ "{% endhighlight " }}%}` blocks around it. Adding the parameter `linenos` will show source lines besides the code.
+1. Deploy the swag container:
+    {% highlight yaml %}
 
-{% highlight c %}
+    version: "3.8"
+    services:
+        swag:
+            image: lscr.io/linuxserver/swag:latest
+            container_name: swag
+            cap_add:
+               - NET_ADMIN
+            environment:
+               - PUID=1000
+               - PGID=1000
+               - TZ=Europe/Rome
+               - URL=reverseproxynet.xyz
+               - SUBDOMAINS=wildcard
+               - VALIDATION=dns
+               - DNSPLUGIN=azure
+               - EMAIL=<myemail@reverseproxynet.xyz> #optional (doesn't need to be related to domain)
+               - DOCKER_MODS=linuxserver/mods:swag-auto-reload
+            volumes:
+               - swag_data:/config
+            ports:
+               - 443:443
+               - 80:80
+            extra_hosts:
+               - reverseproxynet.xyz:127.0.0.1
+            restart: unless-stopped
+    volumes:
+        swag_data:
 
-static void asyncEnabled(Dict* args, void* vAdmin, String* txid, struct Allocator* requestAlloc)
-{
-    struct Admin* admin = Identity_check((struct Admin*) vAdmin);
-    int64_t enabled = admin->asyncEnabled;
-    Dict d = Dict_CONST(String_CONST("asyncEnabled"), Int_OBJ(enabled), NULL);
-    Admin_sendMessage(&d, txid, admin);
-}
+    networks:
+        default:
+            name: proxynet
+            external: true
 
-{% endhighlight %}
+    {% endhighlight %}
+2. Now that the container is running, navigate to the volume "swag_data" (for example vscode with docker extension). From the volume edit `azure.ini`:
+```
+nano /config/dns-conf/azure.ini
+```
+Here we need to configure the Azure information created before: `dns_azure_sp_client_id`, `dns_azure_sp_client_secret`, `dns_azure_tenant_id`, `dns_azure_environment`, `dns_azure_zone1`.
+For example using all the credentials extracted before:
+```
+# Instructions: https://certbot-dns-azure.readthedocs.io/en/latest/
+# Replace with your values
+# dns_azure_environment can be one of the following: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud
+# Service Principal with Client Secret
+dns_azure_sp_client_id = 689264e4-5e48-172f-a584-dd4124c57c29
+dns_azure_sp_client_secret = EnG9Q~5tG2Z-_Fi0nZOabmkvaAMxcgBX_YPcOaAo
+dns_azure_tenant_id = d8x72dd3-f729-4fe1-0f6e-12dcb6c82d5c
+dns_azure_environment = "AzurePublicCloud"
+dns_azure_zone1 = reverseproxynet.xyz:/subscriptions/beb6bvvd-d251-45be-a1db-f26b87da91e/resourceGroups/test
+```
+
+**NOTE**: dns_azure_zone1 is made in this way: `<domain>/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>`
+3. Restart the docker container: `docker restart swag`.
+4. If everything is setup correctly and all the above steps has been correctly performed, by reaching the domain with the browser: `https://<YOUR-DOMAIN>` you should visualize the SWAG landing page.
+![](/assets/images/images_2024-02-10-azure-swag/swag_landing_page.png)
