@@ -14,6 +14,7 @@ Create a reverse proxy using [SWAG](https://hub.docker.com/r/linuxserver/swag) t
 - Azure Account
 - Azure VM (not mandatory but highly suggested)
 
+
 ## Azure setup
 
 ### Create DNS resource
