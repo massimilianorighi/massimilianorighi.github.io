@@ -13,6 +13,7 @@ Setup [Nextcloud AIO](https://github.com/nextcloud/all-in-one) with [SWAG](https
 - Domain (a domain can be bought on [namecheap](https://www.namecheap.com/) for few $/€)
 - A working SWAG setup (check my guide: [azure-swag](https://massimilianorighi.github.io/azure-swag/)).
 
+
 ## SWAG setup
 In SWAG we have to setup the reverse proxy configuration. There is a pre-configured configuration from Linuxserver that might help us in the setup.
 
