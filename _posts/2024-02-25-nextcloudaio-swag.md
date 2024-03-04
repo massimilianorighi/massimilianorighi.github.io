@@ -11,7 +11,7 @@ Setup [Nextcloud AIO](https://github.com/nextcloud/all-in-one) with [SWAG](https
 
 ### Requirements
 - Domain (a domain can be bought on [namecheap](https://www.namecheap.com/) for few $/€)
-- A working SWAG setup (check my guide: [azure-swag](https://massimilianorighi.github.io/azure-swag/)).
+- A working SWAG setup (check my guide: [azure-swag](https://massimilianorighi.github.io/2024/02/10/azure-swag.html)).
 
 
 ## SWAG setup
